@@ -68,3 +68,127 @@ show_channel_urls: true
 > conda install -c <channel_name> -n <env_name> <pkg_name>
 > conda uninstall -c <channel_name> -n <env_name> <pkg_name>
 ```
+
+## 集群中 conda 配置使用
+
+在集群中，intel-2020 版本的 intelpython3 自带了 conda 包。使用如下命令初始化 intelpython 环境
+
+```bash
+> source /opt/intel/2020/intelpython3/bin/activate
+```
+
+此时，查看 conda 是否为 intel 包中软件
+
+```bash
+> which conda
+/opt/intel/2020/intelpython3/condabin/conda
+```
+
+输入 conda 初始化命令
+
+```bash
+> conda init
+no change     /opt/intel/2020/intelpython3/condabin/conda
+no change     /opt/intel/2020/intelpython3/bin/conda
+no change     /opt/intel/2020/intelpython3/bin/conda-env
+no change     /opt/intel/2020/intelpython3/bin/activate
+no change     /opt/intel/2020/intelpython3/bin/deactivate
+no change     /opt/intel/2020/intelpython3/etc/profile.d/conda.sh
+no change     /opt/intel/2020/intelpython3/etc/fish/conf.d/conda.fish
+no change     /opt/intel/2020/intelpython3/shell/condabin/Conda.psm1
+no change     /opt/intel/2020/intelpython3/shell/condabin/conda-hook.ps1
+no change     /opt/intel/2020/intelpython3/lib/python3.7/site-packages/xontrib/conda.xsh
+no change     /opt/intel/2020/intelpython3/etc/profile.d/conda.csh
+modified     /home/lilongxiang/.bashrc
+No action taken.
+```
+
+可以看到，此时个人目录下 `.bashrc` 文件已经修改，添加了如下 conda 初始化命令。
+
+```bash
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/intel/2020/intelpython3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/intel/2020/intelpython3/etc/profile.d/conda.sh" ]; then
+        . "/opt/intel/2020/intelpython3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/intel/2020/intelpython3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+```
+
+当使用 zshell 时，需要把上面的 `shell.bash` 改为 `zshell`，然后放入 `.zshrc` 配置文件中。
+
+下面以 pandoc 为例，介绍 conda 安装软件过程。输入如下命令开始安装
+
+```bash
+> conda install pandoc
+Collecting package metadata (current_repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: /opt/intel/2020/intelpython3
+
+  added / updated specs:
+    - pandoc
+
+
+The following NEW packages will be INSTALLED:
+
+  gmp                pkgs/main/linux-64::gmp-6.1.2-h6c8ec71_1
+  pandoc             pkgs/main/linux-64::pandoc-2.2.3.2-0
+
+
+Proceed ([y]/n)?
+```
+
+输入 yes 后显示安装并没有成功。
+
+```bash
+Preparing transaction: done
+Verifying transaction: failed
+
+EnvironmentNotWritableError: The current user does not have write permissions to the target environment.
+  environment location: /opt/intel/2020/intelpython3
+  uid: 1014
+  gid: 1015
+```
+
+其根本原因是在当前环境下（base），用户没有权限执行安装命令。解决办法是新建一个虚拟环境 `myenv`，新的环境默认位置为 `${HOME}/.conda/envs/myenv`。此时，切换到新环境后再进行安装即不再有权限问题。
+
+```bash
+> conda install pandoc
+Collecting package metadata (current_repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: /home/lilongxiang/.conda/envs/myenv
+
+  added / updated specs:
+    - pandoc
+
+
+The following NEW packages will be INSTALLED:
+
+  gmp                pkgs/main/linux-64::gmp-6.1.2-h6c8ec71_1
+  intelpython        conda_channel/linux-64::intelpython-2020.0-1
+  libgcc-ng          conda_channel/linux-64::libgcc-ng-9.1.0-hdf63c60_0
+  libstdcxx-ng       conda_channel/linux-64::libstdcxx-ng-9.1.0-hdf63c60_0
+  pandoc             pkgs/main/linux-64::pandoc-2.2.3.2-0
+  zlib               conda_channel/linux-64::zlib-1.2.11-h14c3975_7
+
+
+Proceed ([y]/n)? y
+
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+(myenv)
+```
