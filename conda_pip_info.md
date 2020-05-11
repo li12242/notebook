@@ -43,6 +43,7 @@ conda 使用时提供了三个概念：虚拟环境、通道和包。
 > conda create -n <env_name> python=3.6 # 使用特定 py 版本新建环境
 > conda activate <env_name>             # 激活环境
 > conda deactivate <env_name>           # 退出环境
+> conda remove -n <env_name> --all      # 删除环境及所有包
 ```
 
 通道（channel）指包下载包时使用的镜像源网址。在国内可以使用清华镜像网站提高下载速度
