@@ -346,7 +346,7 @@ $ vi test.tex
 
 在 `test.tex` 文件中输入以下内容。
 
-```bash
+```
 \documentclass[11pt]{article}
 \usepackage[BoldFont,SlantFont,CJKsetspaces,CJKchecksingle]{xeCJK}
 \setCJKmainfont[BoldFont=SimHei]{SimSun}
@@ -389,5 +389,6 @@ Transcript written on test.log.
 ```
 
 生成 `test.pdf` 文件后，可以将文件从服务器下载到本地进行查看。
-最终通过使用 docker 容器，实现了服务器上编译 latex 文件功能，并且 texlive 完全使用 ubuntu 环境的 apt 命令安装，不需要在集群中使用 root 命令，并且安装的软件与集群环境相互隔离。
+
+最终通过使用 docker 容器，实现了在服务器上编译 latex 文件功能，并且 texlive 完全使用 ubuntu 系统中 apt 命令安装，不需要使用集群中 root 命令。
 
