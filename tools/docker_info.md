@@ -392,3 +392,14 @@ Transcript written on test.log.
 
 最终通过使用 docker 容器，实现了在服务器上编译 latex 文件功能，并且 texlive 完全使用 ubuntu 系统中 apt 命令安装，不需要使用集群中 root 命令。
 
+## docker compose
+
+前面使用 Docker 的时候，按照定义 Dockerfile 文件，然后使用 docker build、docker run 等命令建立和操作容器。然而某些特殊情况需要创建多个容器服务，如果每个容器都要手动启停，那么仍需要极高的维护量。为了方便对多个容器的建立和运行进行管理，可以使用docker compose工具。
+
+compose 是用于定义和运行多容器 docker 应用程序的工具。通过 compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。compose 将所管理的容器分为三层，分别是工程（project）、服务（service）、容器（container）。compose 运行目录下的所有文件（docker-compose.yml）组成一个工程，一个工程包含多个服务，每个服务中定义了容器运行的镜像、参数、依赖，一个服务可包括多个容器实例。compose 使用的三个步骤为：
+
+1. 使用 Dockerfile 定义应用程序的环境。
+2. 使用 docker-compose.yml 定义构成应用程序的服务，这样它们可以在隔离环境中一起运行。
+3. 执行 docker-compose up 命令来启动并运行整个应用程序。
+
+docker compose 操作可以通过 `docker-compose.yml` 文件辅助定义
