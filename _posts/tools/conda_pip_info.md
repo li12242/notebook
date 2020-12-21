@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "pip 与 conda"
+date:   2020-12-21 14:18:22 +0800
+categories: jekyll update
+---
 # pip 与 conda
 
 ## 简介
