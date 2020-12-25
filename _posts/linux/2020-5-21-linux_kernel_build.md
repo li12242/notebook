@@ -1,3 +1,9 @@
+---
+layout: post
+title: linux 内核编译
+date: 2020-5-21
+categories: linux
+---
 # linux 内核编译
 
 ## 下载

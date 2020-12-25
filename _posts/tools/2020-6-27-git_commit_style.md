@@ -1,3 +1,9 @@
+---
+layout: post
+title: Git commit 正确姿势
+date:   2020-6-27
+categories: tools
+---
 # Git commit 正确姿势
 
 使用正确的 git commit 方式，不仅可以帮助出现 bug 时回溯到正确的版本，并且也可用 commit 日志自动生成 chang log 文档等。

@@ -1,3 +1,9 @@
+---
+layout: post
+title: Spack 镜像制作
+date: 2020-10-8
+categories: tools
+---
 # Spack 镜像制作
 
 以 MUMPS 和 STRUMPACK 软件安装过程为例，首先在本地使用制作 MUMPS 和 STRUMPACK 镜像，并且包含所有依赖库。

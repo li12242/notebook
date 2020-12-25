@@ -1,3 +1,9 @@
+---
+layout: post
+title: shell 脚本并发调度控制
+date: 2020-7-29
+categories: linux
+---
 # shell 脚本并发调度控制
 
 在 shell 脚本里有时需要同时启动多个命令实现并发，对于少量程序可以采用将命令放到后台方法实现并发，并使用wait命令等待命令执行完毕。

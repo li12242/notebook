@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "pandoc 安装与使用"
+date:   2020-9-27
+categories: tools
+---
 # pandoc 安装与使用
 
 Makedown 是当前一种应用广泛的标记语言，其语法简单，但是功能强大，可以在文本中添加图片、超链接、引用、注释和公式等。本文档也是采用 Markdown 所撰写。

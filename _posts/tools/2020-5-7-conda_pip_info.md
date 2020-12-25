@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "pip 与 conda"
-date:   2020-12-21 14:18:22 +0800
-categories: jekyll update
+title: pip 与 conda
+date: 2020-5-7
+categories: tools
 ---
 # pip 与 conda
 
@@ -16,14 +16,14 @@ pip 是接触 python 后最早认识的包管理工具。通过使用 pip 能够
 
 [^12]: https://www.jianshu.com/p/5601dab5c9e5
 
-| 类别 | conda | pip |
-| :---: | :---: | :---: |
-| 管理 | 二进制 | wheel 或源码 |
-| 需要编译器 | no | yes |
-| 语言 | any | Python |
-| 虚拟环境 | 支持 | virtualenv 或 venv |
-| 依赖性检查 | yes | 用户选择 |
-| 包来源 | Anaconda repo和cloud | PyPi |
+|    类别    |        conda         |        pip         |
+| :--------: | :------------------: | :----------------: |
+|    管理    |        二进制        |    wheel 或源码    |
+| 需要编译器 |          no          |        yes         |
+|    语言    |         any          |       Python       |
+|  虚拟环境  |         支持         | virtualenv 或 venv |
+| 依赖性检查 |         yes          |      用户选择      |
+|   包来源   | Anaconda repo和cloud |        PyPi        |
 
 
 ## pip 使用
