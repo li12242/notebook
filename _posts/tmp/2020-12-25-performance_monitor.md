@@ -1,9 +1,15 @@
-# Intel Performance Monitor
+---
+layout: post
+title: Intel CPU 性能监控
+date: 2020-12-25
+categories: tools
+---
+# 简介
 
 在 Intel Pentium 处理器开始，通过引入性能监控计数器 MSRs（Model-Specific Register）实现了性能监控功能。
 性能监控分为两类，第一类使用计数器对事件进行监控并且取样，这些事件不属于架构系统并且会随着处理器架构变化。第二类为架构级别的性能监控能力，其支持一小部分的计数和取样功能，而支持的架构性能事件在不同 CPU 架构中是相同的。
 
-## Uncore Performance Monitor Units
+# Uncore Performance Monitor Units
 
 PMU（performance monitoring units）使用分布式设计，其中计数器在不同 uncore 单元中，不同单元中计数器无法监控其他单元的事件。
 不同 uncore 单元如图所示，其中 CBo（C-box）、ARB（arbitration）和 IMC（integrated memory controller）都是 uncore 单元中一部分。
