@@ -47,7 +47,8 @@ conda 使用时提供了三个概念：虚拟环境、通道和包。
 
 ```python
 > conda create -n <env_name> python=3.6 # 使用特定 py 版本新建环境
-> conda activate <env_name>             # 激活环境
+> conda create -p <env_path> python=3.6 # 指定新建环境安装路径
+> conda activate <env_name>/<env_path>  # 激活环境
 > conda deactivate <env_name>           # 退出环境
 > conda remove -n <env_name> --all      # 删除环境及所有包
 ```
