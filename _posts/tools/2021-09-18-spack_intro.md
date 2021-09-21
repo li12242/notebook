@@ -1,16 +1,70 @@
 ---
 layout: post
-title: spack 简明教程
+title: Spack 简明教程
 date: 2021-9-18
 categories: tools
 ---
-# spack 简明教程
+# Spack 简明教程
+
+## spack 简介
+
+Spack 是采用 Python 语言建立的高性能集群包管理器，可以简化各种科学软件的安装过程。通过使用Spack，用户可以建立不同版本、配置、平台和编译器编译的软件。
+
+Spack并不针对特征语言，用户可以使用Python或R程序，并链接到 C、C++ 或 Fortran 等混合编译器。Spack可以用来管理共享的安装包和目录，并结合不同版本软件进行测试。
+
+Spack安装十分简单，下载 Spack 源码压缩包，解压后直接运行配置脚本初始化后即可使用。
+
+```bash
+$ unzip spack-develop.zip
+# define SPACK_ROOT
+$ echo 'export SPACK_ROOT=<path to spack folder>' >> ~/.bashrc
+# import setup script for spack
+$ echo '. ${SPACK_ROOT}/share/spack/setup-env.sh' >> ~/.bashrc
+```
 
 ## spack 基本操作
 
 ### 软件安装与卸载
 
+在 Spack 中，安装指定版本的软件并解决其依赖非常简单，使用 `@` 符号表示版本，使用 `%` 指明使用编译器即可。如下示例中展示了使用 spack 安装 hdf5 软件的过程。
 
+```bash
+# Install a specific version by appending @
+$ spack install hdf5@1.10.1
+
+# Specify a compiler (and optional version), with %
+$ spack install hdf5@1.10.1 %gcc@4.7.3
+```
+
+除了对软件版本和编译器选择外，Spack 还可对软件安装过程进行一些更详细的修改，例如是否安装某个依赖库，以及软件编译参数修改等。当软件依赖于其他软件时，可以用 `^` 关键字，对于依赖软件也可使用其他关键字进行递归调用。例如
+
+```bash
+$ spack install tcl ^zlib @1.2.8 %clang
+```
+
+在某些软件安装过程中，会包含一些布尔变量指令。这些指令可以用符号 `+` 和 `~` 或 `-` 来增加或去除。其中后两个符号都是表示 `False`。
+
+```bash
+# 安装 hdf5 并不使用 mpi 支持
+$ spack install hdf5~mpi
+```
+
+如下所示：
+
+```bash
+# Add special boolean compile-time options with +
+$ spack install hdf5@1.10.1 %gcc@4.7.3 +szip
+
+# Add custom compiler flags
+$ spack install hdf5@1.10.1 %gcc@4.7.3 cppflags="-O3 -floop-block"
+
+# Cross-compile for compute nodes on a Cray or Blue Gene/Q
+$ spack install hdf5@1.10.1 target=backend
+```
+
+在 Spack 安装软件的过程中，是通过采用 RPATH 命令来解决软件间依赖关系的，因此当软件运行时，不需要再对 LD_LIBRARY_PATH 环境变量进行修改。
+
+当需要加载某个安装软件时，使用 `spack load <package_name>` 即可直接加载所有需要的环境。除此之外，Spack 还支持使用 Module 命令，在安装好对应软件后，还会配置对应的 modulefiles。
 
 ### 编译器选择
 
