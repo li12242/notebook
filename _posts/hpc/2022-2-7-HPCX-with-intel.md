@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HPC-X使用
-date: 2021-4-28
+date: 2022-2-7
 categories: linux, cloud
 ---
 
