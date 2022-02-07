@@ -1,8 +1,8 @@
 ---
 layout: post
-title: HPC-X使用
+title: HPC-X使用Intel编译器
 date: 2022-2-7
-categories: linux, cloud
+categories: linux, hpc
 ---
 
 # ucx 编译
