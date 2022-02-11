@@ -2,7 +2,7 @@
 layout: post
 title: Intel APS 使用手册
 date: 2021-1-5
-categories: performance
+categories: hpc
 ---
 
 # 简介

@@ -2,7 +2,7 @@
 layout: post
 title: Intel 编译器向量化并行
 date: 2021-1-5
-categories: optimization
+categories: hpc
 ---
 
 # 简介

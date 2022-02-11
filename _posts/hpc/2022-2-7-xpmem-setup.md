@@ -2,7 +2,7 @@
 layout: post
 title: XPMEM安装与部署
 date: 2022-2-7
-categories: linux, mpi, hpc
+categories: hpc
 ---
 
 # xpmem 安装与部署

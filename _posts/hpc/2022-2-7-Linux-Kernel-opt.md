@@ -2,7 +2,7 @@
 layout: post
 title: Linux内核参数优化
 date: 2022-2-7
-categories: linux, hpc
+categories: hpc
 ---
 
 # 优化

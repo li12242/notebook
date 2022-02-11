@@ -2,7 +2,7 @@
 layout: post
 title: AWS试用手册
 date: 2021-4-28
-categories: linux, cloud
+categories: hpc
 ---
 
 # 超级简短 HPC 使用 AWS 平台介绍

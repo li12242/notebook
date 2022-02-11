@@ -2,7 +2,7 @@
 layout: post
 title: mpiP对MPI应用进行分析
 date: 2022-2-7
-categories: MPI, hpc
+categories: hpc
 ---
 
 # 简介

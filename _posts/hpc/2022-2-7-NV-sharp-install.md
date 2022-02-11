@@ -2,7 +2,7 @@
 layout: post
 title: NVIDIA Sharp服务安装与使用
 date: 2022-2-7
-categories: MPI, hpc, MPI
+categories: hpc
 ---
 
 # NV Sharp

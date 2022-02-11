@@ -2,7 +2,7 @@
 layout: post
 title: IPM对MPI应用进行分析
 date: 2022-2-7
-categories: MPI, hpc
+categories: hpc
 ---
 
 # IPM 简介

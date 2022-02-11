@@ -2,7 +2,7 @@
 layout: post
 title: MySQL服务mariadb安装与配置
 date: 2022-2-7
-categories: tools, mysql
+categories: tools
 ---
 
 # MySQL 环境配置

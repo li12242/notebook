@@ -2,7 +2,7 @@
 layout: post
 title: 编译器常见错误
 date: 2022-2-7
-categories: linux, compiler
+categories: hpc
 ---
 
 # 编译常见错误
