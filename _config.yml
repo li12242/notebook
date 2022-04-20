@@ -29,7 +29,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 twitter_username: li12242
 github_username:  li12242
 
-url: "https://ofcan.github.io" # the base hostname & protocol for your site
+url: https://li12242.github.io # the base hostname & protocol for your site
 baseurl: /notebook
 
 # Build settings
