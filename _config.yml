@@ -29,6 +29,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: li12242
 github_username:  li12242
 
+url: "https://ofcan.github.io" # the base hostname & protocol for your site
+baseurl: /notebook
+
 # Build settings
 theme: minima
 plugins:
