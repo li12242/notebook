@@ -21,6 +21,8 @@ CPU 的微架构由一系列的运算单元、逻辑单元、寄存器等在总�
 
 ![Intel SkyLake server处理器微架构](assets/2022-4-20-intel-micro-architecture-perf-analysis/950px-sunny_cove_block_diagram.svg.png)
 
+<img src="/assets/intel-micro-architecture-perf-analysis/950px-sunny_cove_block_diagram.svg.png" alt="Intel SkyLake server处理器微架构"/>
+
 这三大模块分别负责1）指令读取、解码；2）微指令调度、执行；3）数据访问等功能。
 在进一步对微架构各个模块介绍前，首先对现代超标量处理器流水线执行过程进行介绍，随后将分别介绍不同模块功能和硬件指标。
 
@@ -37,12 +39,17 @@ CPU 的微架构由一系列的运算单元、逻辑单元、寄存器等在总�
 5. 结果写回（Write Back） - 把执行指令阶段的运行结果数据写回存储器中；
 
 在指令执行过程中，为了提高执行速度，需要各个部件并行工作，使得各个部件的操作在时间上重叠，实现流水线作业。
-图{@fig:pipeline_sequential}和{@fig:pipeline}分别展示了指令使用非流水线和流水线并行方式执行过程，可以看出采用流水线并行方式后，使用的时钟周期从15降低到7左右。
+下图分别展示了指令使用非流水线和流水线并行方式执行过程，可以看出采用流水线并行方式后，使用的时钟周期从15降低到7左右。
 从原理上说，计算机流水线（Pipeline）就是将一个计算任务细分成若干个子任务，每个子任务都由专门的功能部件进行处理，一个计算任务的各个子任务由流水线上各个功能部件轮流进行处理 （即各子任务在流水线的各个功能阶段并发执行），最终完成工作。
 
-![非流水线执行\label{fig:pipeline_sequential}](assets/2022-4-20-intel-micro-architecture-perf-analysis/pipeline_sequential.png)
+![非流水线执行](assets/2022-4-20-intel-micro-architecture-perf-analysis/pipeline_sequential.png)
+
+<img src="/assets/intel-micro-architecture-perf-analysis/pipeline_sequential.png" alt="非流水线执行"/>
 
 ![流水线并行](assets/2022-4-20-intel-micro-architecture-perf-analysis/pipeline.png)
+
+<img src="/assets/intel-micro-architecture-perf-analysis/pipeline.png" alt="流水线执行"/>
+
 
 根据计算机流水线执行指令个数，可以分为标量和超标量流水线。在超标量流水线满载时，每个时钟周期执行指令数为2条及以上。超标量流水线处理器是时间并行技术和空间并行计算的综合应用。
 
@@ -70,6 +77,9 @@ CPU 的微架构由一系列的运算单元、逻辑单元、寄存器等在总�
 
 ![指令拾取模块](assets/2022-4-20-intel-micro-architecture-perf-analysis/microarchitecture-IF.png)
 
+<img src="/assets/intel-micro-architecture-perf-analysis/microarchitecture-IF.png" alt="指令拾取模块"/>
+
+
 处理器在指令执行之前，必须先装载指令，而指令会被预先保存在 L1 指令缓存（I-Cache）中。
 SkyLake包含32 KiB大小L1指令缓存单元，采用8路组相联，每个周期可以取16 Bytes长度指令（执行带宽）。
 指令实际物理地址通过TLB缓存获取。与缓存系统一样，TLB缓存也是多级缓存系统，一级TLB缓存包括ITLB和DTLB，分别具有128和64个条目，二级TLB缓存为指令和数据共享，共包含1536条目。[^1]
@@ -88,6 +98,8 @@ SkyLake包含32 KiB大小L1指令缓存单元，采用8路组相联，每个周�
 
 ![指令译码模块](assets/2022-4-20-intel-micro-architecture-perf-analysis/microarchitecture-ID.png)
 
+<img src="/assets/intel-micro-architecture-perf-analysis/microarchitecture-ID.png" alt="指令译码模块"/>
+
 SkyLake 解码器共有 5 个（4个简单解码器和1个复杂解码器）。简单解码器主要是将一条 x86 指令翻译为一条对应的 uops，而复杂解码器会将一些特殊的 x86 指令翻译为 1 到 4 条 uops，如 CPUID、sine 和 cosine 等指令。
 对于这些复杂指令，会绕道从MicroCode Sequencer ROM（MS ROM）译码。
 
@@ -104,6 +116,8 @@ SkyLake 解码器共有 5 个（4个简单解码器和1个复杂解码器）。�
 乱序执行为了提升指令集并行化设计，在多个执行单元的超标量设计当中，乱序执行引擎是一个很重要的部分，需要进行复杂的调度管理。
 
 ![执行引擎模块](assets/2022-4-20-intel-micro-architecture-perf-analysis/microarchitecture-OOO.png)
+
+<img src="/assets/intel-micro-architecture-perf-analysis/microarchitecture-OOO.png" alt="执行引擎模块"/>
 
 乱序执行从Allocator定位器开始，Allocator管理着RAT（Register Alias Table，寄存器别名表）、ROB（Re-Order Buffer，重排序缓冲区）和 RRF（Retirement Register File，退回寄存器文件）。在 Allocator 之前，流水线都是顺序执行的，在 Allocator 之后，就可以进入乱序执行阶段了。
 
@@ -147,6 +161,8 @@ RS（Reservation Station，中继站）是执行引擎中另外一个重要模�
 
 ![Intel微架构前/后端分类](assets/2022-4-20-intel-micro-architecture-perf-analysis/inte_architecture_overview.png)
 
+<img src="/assets/intel-micro-architecture-perf-analysis/inte_architecture_overview.png" alt="Intel微架构前/后端分类"/>
+
 在对微架构进行性能分配时，根据每周期 4 个 uops 是否满载运行进行第一步分析，也就是图{@fig:intel_arch_overview}中星号位置。
 通过判断uops是否被Allocator发射给端口执行，可以将时钟周期分为分配与未分配 uops 两大类。
 第一类运行的时钟周期可以初步认为是“有效”的，而第二类时钟周期中流水线出现了阻塞情况，主要原因是前/后端缺少相应资源。
@@ -168,6 +184,8 @@ RS（Reservation Station，中继站）是执行引擎中另外一个重要模�
 
 ![Intel微架构性能问题初步分类](assets/2022-4-20-intel-micro-architecture-perf-analysis/TAMA_original.gif)
 
+<img src="/assets/intel-micro-architecture-perf-analysis/TAMA_original.gif" alt="Intel微架构性能问题初步分类"/>
+
 ## 分析工作流程
 
 按照初步层次分析方法，我们将时钟周期按照图{@fig:TAMA_original}所示分为了4个大类，对各类所出现具体原因进一步分类后，可以得到如图{@fig:TAMA_full}所示全分类微架构性能。
@@ -175,6 +193,8 @@ Intel 提供了典型 HPC 应用使用 TAMA 性能分析结果如下表所示。
 下面将对不同类别性能问题分别介绍。
 
 ![Intel微架构性能问题分类](assets/2022-4-20-intel-micro-architecture-perf-analysis/General-Top-Down-Microarchitecture-Analysis-Method-6.png)
+
+<img src="/assets/intel-micro-architecture-perf-analysis/General-Top-Down-Microarchitecture-Analysis-Method-6.png" alt="Intel微架构性能问题分类"/>
 
 | 分类 | Retiring | Back-End Bound | Front-End Bound | Bad Speculation |
 | :---: | :---: | :---: | :---: | :---: |
