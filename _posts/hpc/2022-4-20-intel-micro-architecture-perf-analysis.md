@@ -21,7 +21,7 @@ CPU 的微架构由一系列的运算单元、逻辑单元、寄存器等在总�
 
 ![Intel SkyLake server处理器微架构](assets/2022-4-20-intel-micro-architecture-perf-analysis/950px-sunny_cove_block_diagram.svg.png)
 
-<img src="/assets/intel-micro-architecture-perf-analysis/950px-sunny_cove_block_diagram.svg.png" alt="Intel SkyLake server处理器微架构"/>
+<img src="/notebook/assets/intel-micro-architecture-perf-analysis/950px-sunny_cove_block_diagram.svg.png" alt="Intel SkyLake server处理器微架构"/>
 
 这三大模块分别负责1）指令读取、解码；2）微指令调度、执行；3）数据访问等功能。
 在进一步对微架构各个模块介绍前，首先对现代超标量处理器流水线执行过程进行介绍，随后将分别介绍不同模块功能和硬件指标。
