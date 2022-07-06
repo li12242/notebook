@@ -178,6 +178,6 @@ Intel 提供了典型 HPC 应用使用 TAMA 性能分析结果如下表所示。
 
 <img src="/notebook/assets/intel-micro-architecture-perf-analysis/General-Top-Down-Microarchitecture-Analysis-Method-6.png" alt="Intel微架构性能问题分类"/>
 
-| 分类 | Retiring | Back-End Bound | Front-End Bound | Bad Speculation |
-| :---: | :---: | :---: | :---: | :---: |
-| 百分比 | 30-70% | 20-40% | 5-10% | 1-5% |
+|  分类  | Retiring | Back-End Bound | Front-End Bound | Bad Speculation |
+| :----: | :------: | :------------: | :-------------: | :-------------: |
+| 百分比 |  30-70%  |     20-40%     |      5-10%      |      1-5%       |
