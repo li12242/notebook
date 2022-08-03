@@ -15,4 +15,7 @@ Catastrophic error: could not set locale "" to allow processing of multibyte cha
 
 ```bash
 export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 ```
+
+或者在 C 编译器选项中增加 `-no-multibyte-chars`。

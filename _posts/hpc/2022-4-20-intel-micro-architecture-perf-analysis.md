@@ -40,10 +40,11 @@ CPU 的微架构由一系列的运算单元、逻辑单元、寄存器等在总�
 下图分别展示了指令使用非流水线和流水线并行方式执行过程，可以看出采用流水线并行方式后，使用的时钟周期从15降低到7左右。
 从原理上说，计算机流水线（Pipeline）就是将一个计算任务细分成若干个子任务，每个子任务都由专门的功能部件进行处理，一个计算任务的各个子任务由流水线上各个功能部件轮流进行处理 （即各子任务在流水线的各个功能阶段并发执行），最终完成工作。
 
+<p style="text-align: center;">
 <img src="/notebook/assets/intel-micro-architecture-perf-analysis/pipeline_sequential.png" alt="非流水线执行"/>
 
 <img src="/notebook/assets/intel-micro-architecture-perf-analysis/pipeline.png" alt="流水线执行"/>
-
+</p>
 
 根据计算机流水线执行指令个数，可以分为标量和超标量流水线。在超标量流水线满载时，每个时钟周期执行指令数为2条及以上。超标量流水线处理器是时间并行技术和空间并行计算的综合应用。
 

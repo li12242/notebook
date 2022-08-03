@@ -23,6 +23,29 @@ ranking 步骤侧重于 MPI_COMM_WORLD 中的进程的排序。OpenMPI 将此与
 
 binding 步骤将每个进程绑定到一组给定的处理器上，例如可以超额使用一些物理核心，避免其他应用争夺计算资源。绑定可以使用参数命令为 `--bind-to *`
 
+# 绑定测试
+
+使用下面代码对 OpenMPI 运行过程进行测试，在运行过程中会输出当前进程编号和所在节点信息等。同时在 OpenMPI 运行时，也需要添加 `--report-bindings` 运行参数，详细显示运行信息。
+
+```c
+#include <stdio.h>
+#include <mpi.h>
+
+int main(int argc, char **argv){
+    int myrank, nprocs;
+    char name[20];
+    int name_len;
+    MPI_Init(&argc, &argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
+    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+    MPI_Get_processor_name(name, &name_len);
+    printf("rank[%3d] of [%3d] in { %s } says hello.\n", myrank, nprocs, name);
+    MPI_Finalize();
+
+    return 0;
+}
+```
+
 下面显示了使用 3 个节点，每个节点两进程时使用不同映射和绑定参数运行结果：
 ```sh
 $ mpirun -n 6 -machinefile hostfile --map-by ppr:1:socket --rank-by node --report-bindings ./hello
