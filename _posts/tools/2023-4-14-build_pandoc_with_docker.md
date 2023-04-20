@@ -13,7 +13,7 @@ categories: tools
 
 在 Windows 平台，下载并安装 docker desktop 软件。在安装完成后，打开 docker 后可能提示需要将 wsl 内核升级。以管理员权限打开 Windows 下命令行工具，输入下面命令对 wsl 内核进行升级。
 
-```bash
+```powershell
 >> wsl --update
 ```
 
@@ -25,7 +25,7 @@ categories: tools
 
 为了后面省去 latex 软件安装过程，选择包含 latex 环境镜像。首先搜索相关镜像结果如下：
 
-```bash
+```powershell
 >> docker search xelatex
 NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 moss/xelatex                    Docker container to compile XeLaTeX files in…   7                    [OK]
@@ -39,13 +39,13 @@ weirdgiraffe/xelatex            Docker image to generate cv using xelatex       
 
 选择包含中文 XeLaTeX 环境的镜像 `kitakami/xelatex`，使用如下 docker 命令拉取。
 
-```bash
+```powershell
 >> docker pull kitakami/xelatex
 ```
 
 随后新建容器，并且以交互模式进入。
 
-```bash
+```powershell
 >> docker run -it -–name=pandoc-md kitakami/xelatex bash
 ```
 
@@ -106,7 +106,7 @@ $ which xelatex
 
 在本地新建 pandoc 配置文件及模板，上传到 docker 容器中目录 `/data`。
 
-```
+```powershell
 >> docker cp .\0-setting.md 544523df5180:/data
 >> docker cp .\makefile 544523df5180:/data
 >> docker cp -r .\config 544523df5180:/data
@@ -116,7 +116,7 @@ $ which xelatex
 
 在 pandoc 编译时，需要使用 Windows 等线字体，因此也需要将字体文件上传到 docker 容器内。
 
-```bash
+```powershell
 # cd C:\Windows\Fonts
 >> docker cp .\Deng.ttf 544523df5180:/usr/share/fonts/win10/
 >> docker cp .\Dengb.ttf 544523df5180:/usr/share/fonts/win10/
@@ -184,13 +184,13 @@ cd ${WDIR} & pandoc \
 
 在建立好运行脚本并测试无误后，使用如下命令将容器保存为镜像，其中 544523df5180 为容器 ID。
 
-```bash
->> docker commit `544523df5180` pandoc-md
+```powershell
+>> docker commit 544523df5180 pandoc-md
 ```
 
 检查当前镜像，确认保存成功。
 
-```
+```powershell
 >> docker images -a
 REPOSITORY                    TAG       IMAGE ID       CREATED              SIZE
 pandoc-md                     latest    ece4de405b52   About a minute ago   1.4GB
@@ -201,7 +201,7 @@ kitakami/xelatex              latest    5b1e914e9d50   4 years ago          762M
 
 在 Windows 环境内运行时，在工作目录内打开命令行，将当前目录绑定到容器内 `/build` 目录运行。
 
-```bash
+```powershell
 >> docker run -v ${PWD}:/build --name=pandoc-test pandoc-md /data/run.sh
 ```
 
