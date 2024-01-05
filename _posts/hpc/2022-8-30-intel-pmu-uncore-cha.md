@@ -2,7 +2,7 @@
 layout: post
 title: Intel CHA 模块监控
 date: 2022-8-30
-categories: tools
+categories: hpc
 ---
 
 ## 1. 简介
