@@ -52,10 +52,12 @@ SUBROUTINE ECCP_NL_OMP(LMDIM, LMMAXC, CDIJ, CPROJ1, CPROJ2, CNL)
          CNL = CNL + CDIJ(LP, L)*CPROJ1(LP)*GCONJG(CPROJ2(L))
       END DO
    END DO
-   
+
 END SUBROUTINE ECCP_NL_OMP
 ```
 
+# 参考文献
 
-
+[1] BOARD O A R. OpenMP Application Programming Interface Specification Version 5.1[M]. SUPINSKI B de, KLEMM M. Independently published, 2020:210.
+[2] Intel® Fortran Compiler Classic and Intel® Fortran Compiler Developer Guide and Reference [M]. 2024.0 edn. 2023:1347.
 

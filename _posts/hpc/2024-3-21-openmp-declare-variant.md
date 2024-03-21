@@ -79,3 +79,7 @@ END PROGRAM
 引语`DECLARE VARIANT`必须出现在函数说明部分，或接口块的接口中。当调用时匹配`MATCH`引语中指定的上下文匹配时，对应的设备版本函数将会被调用。
 
 在上面示例中，`DECLARE VARIANT`引语中定义了`match(construct={target variant dispatch}& `，因此在调用时只有`TARGET VARIANT DISPATCH`引语调用基函数时，才会转换为对应设备端版本函数。
+
+# 参考文献
+
+[1] Intel® Fortran Compiler Classic and Intel® Fortran Compiler Developer Guide and Reference [M]. 2024.0 edn. 2023:1350.
