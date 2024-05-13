@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GPU support in Intel MPI
-date: 2024-1-5
+date: 2024-3-14
 categories: hpc
 ---
 

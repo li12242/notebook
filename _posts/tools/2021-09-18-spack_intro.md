@@ -66,6 +66,14 @@ $ spack install hdf5@1.10.1 target=backend
 
 当需要加载某个安装软件时，使用 `spack load <package_name>` 即可直接加载所有需要的环境。除此之外，Spack 还支持使用 Module 命令，在安装好对应软件后，还会配置对应的 modulefiles。
 
+### Module文件
+
+默认情况下spack不包含module配置文件。使用如下命令可以重新生成modulefile：
+
+```bash
+$ spack module tcl refresh 
+```
+
 ### 编译器选择
 
 

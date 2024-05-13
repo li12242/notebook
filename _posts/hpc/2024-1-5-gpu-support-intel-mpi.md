@@ -7,7 +7,7 @@ categories: hpc
 
 # 简介
 
-本文参考Intel手册《oneAPI GPU Optimization Guide》中*Intel MPI for GPU Clusters*相关章节介绍。将对GPU awared Intel GPU使用方法进行介绍。
+本文参考Intel手册《oneAPI GPU Optimization Guide》中*Intel MPI for GPU Clusters*相关章节介绍。将对GPU awared Intel MPI使用方法进行介绍。
 
 在 2019 Updata 8 版本中，Intel MPI 加入了对 GPU buffer 支持功能。在多进程通信中将直接传递 GPU buffer，避免了 host 和 device 端数据传输过程。
 
