@@ -23,6 +23,8 @@ echo 0 >/proc/sys/kernel/randomize_va_space
 # Set CPU governor to performance and disable cc6. Setting the CPU perfomance to governor to perfomrnaces ensures max performances at all times. Disabling cc6 ensures that deeper CPU sleep states are not entered.
 cpupower frequency-set -g performance
 cpupower idle-set -d 2
+
+systemctl stop tuned
 ```
 
 经过测试，上述参数对于 Intel 平台一样适用，在大规模并行环境下可以大幅提升 HPC 应用性能。
