@@ -2,7 +2,7 @@
 layout: post
 title: Fortran面相对象编程
 date: 2025-4-29
-categories: tools
+categories: hpc
 ---
 
 ## 面向对象术语

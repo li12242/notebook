@@ -2,7 +2,7 @@
 layout: post
 title: C++ 模板特化实现通用get函数
 date: 2022-8-21
-categories: tools
+categories: hpc
 ---
 
 # 背景

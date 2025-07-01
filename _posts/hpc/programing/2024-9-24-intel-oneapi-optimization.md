@@ -2,7 +2,7 @@
 layout:post
 title: Intel OneAPI 优化手册
 date: 2024-9-24
-categories: OneAPI
+categories: OneAPI hpc
 ---
 
 # 1. Intel Xe GPU 架构
