@@ -606,11 +606,13 @@ Fortran 指针可以指向一个在多个维度中可能具有非单位步长的
 
 示例 6.1： 作为参数传递的 1D 指针。
 
+```fortran
 subroutine pointer1(Y)
     real, intent(inout), pointer, dimension(:) :: Y
     Y = Y + 1
     return
 end subroutine pointer1
+```
 
 创建了两个版本：
 
